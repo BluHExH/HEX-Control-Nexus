@@ -18,9 +18,8 @@ cd HEX-Control-Nexus
 python3 backend/python_core/automation.py
 
 
----
 
-📱 Termux-Friendly Run
+##📱 Termux-Friendly Run
 
 pkg update && pkg upgrade -y
 pkg install python nodejs git -y
@@ -29,9 +28,9 @@ npm install express
 bash scripts/run.sh
 
 
----
 
-🧠 Banner (Termux Display)
+
+##🧠 Banner (Termux Display)
 
 echo -e "\e[92mH\e[91mE\e[92mX\e[0m Control Nexus"
 
@@ -40,9 +39,9 @@ echo -e "\e[92mH\e[91mE\e[92mX\e[0m Control Nexus"
 
 
 
----
 
-⚙️ Configuration Guide
+
+##⚙️ Configuration Guide
 
 ফাইল: config/config.json
 
@@ -56,9 +55,9 @@ echo -e "\e[92mH\e[91mE\e[92mX\e[0m Control Nexus"
 }
 
 
----
 
-🧾 Key Notes
+
+##🧾 Key Notes
 
 ডেটাবেজ SQLite (local)
 
@@ -70,16 +69,16 @@ Webhooks ডিফল্টভাবে 3000 পোর্টে চলে
 
 
 
----
 
-🧰 CLI Usage
+
+##🧰 CLI Usage
 
 python3 backend/python_core/automation.py --run --verbose
 
 
----
 
-🚩 Flag Description
+
+##🚩 Flag Description
 
 Flag	Description
 
@@ -90,9 +89,9 @@ Flag	Description
 
 
 
----
 
-⚙️ Components Overview
+
+##⚙️ Components Overview
 
 Component	Language	Function
 
@@ -104,9 +103,9 @@ Config	JSON	Runtime settings
 
 
 
----
 
-🔔 Notifications Setup
+
+##🔔 Notifications Setup
 
 Telegram
 
@@ -122,9 +121,9 @@ Email (optional)
 SMTP support later যোগ করা যাবে
 
 
----
 
-📊 Monitoring & Metrics
+
+##📊 Monitoring & Metrics
 
 Logs: logs/hex_core.log
 
@@ -134,9 +133,9 @@ Restart policy: auto_restart: true
 
 
 
----
 
-♻️ Persistence & Restart Safety
+
+##♻️ Persistence & Restart Safety
 
 সব process background-এ চলে
 
@@ -146,16 +145,16 @@ Database crash-protected
 
 
 
----
 
-🪵 Logging
+
+##🪵 Logging
 
 tail -f logs/hex_core.log
 
 
----
 
-🧪 Testing
+
+##🧪 Testing
 
 Node Tests
 
@@ -167,16 +166,16 @@ Python Tests
 pytest tests/python_test.py
 
 
----
 
-🚀 Run All (CI)
+
+##🚀 Run All (CI)
 
 bash scripts/run.sh --ci
 
 
----
 
-🔄 Continuous Integration (GitHub Actions)
+
+##🔄 Continuous Integration (GitHub Actions)
 
 .github/workflows/ci.yml
 
@@ -190,9 +189,9 @@ jobs:
       - run: bash scripts/run.sh --ci
 
 
----
 
-🐳 Docker Services (docker-compose.yml)
+
+##🐳 Docker Services (docker-compose.yml)
 
 version: "3.9"
 services:
