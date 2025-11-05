@@ -203,3 +203,43 @@ services:
     ports:
       - "3000:3000"
 
+
+
+
+##👨‍💻 Developer Notes
+
+Python ≥ 3.10
+
+Node ≥ 18
+
+Java ≥ 11
+
+Recommended editor: VS Code
+
+Test everything locally before committing
+
+
+##⚖️ Legal & Ethical Usage
+
+> 🔒 Educational Purpose Only
+এই প্রজেক্ট কেবলমাত্র শিক্ষা, গবেষণা ও নেটওয়ার্ক অটোমেশন শেখার জন্য।
+অবৈধ কাজে ব্যবহার করলে দায় তোমার নিজের।
+
+
+
+
+##🌐 Web Dashboard Example
+
+bash scripts/run.sh --dashboard
+
+> এতে ড্যাশবোর্ড লোকাল সার্ভারে চালু হবে
+URL: http://localhost:8080
+
+
+
+
+##📜 License
+
+MIT License
+Developed by Hacker Hex ☠️🔪
+© 2025 HEX-Control-Nexus 
