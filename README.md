@@ -13,7 +13,7 @@
 ## 🧩 Local Run (Linux / Termux)
 
 ```bash
-git clone https://github.com/yourname/HEX-Control-Nexus.git
+git clone https://github.com/BluHExH/HEX-Control-Nexus.git
 cd HEX-Control-Nexus
 python3 backend/python_core/automation.py
 
