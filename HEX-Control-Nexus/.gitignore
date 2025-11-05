@@ -1,0 +1,65 @@
+# Dependencies
+node_modules/
+.venv/
+venv/
+env/
+ENV/
+
+# Configuration
+.env
+config/*.local
+config/*.env
+
+# Logs
+logs/
+*.log
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Screenshots
+logs/screenshots/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+build/
+dist/
+*.egg-info/
+target/
+
+# Docker
+docker-compose.override.yml
+
+# Temp files
+tmp/
+temp/
+
+# Coverage
+htmlcov/
+.coverage
+.coverage.*
+.cache
+
+# Pytest
+.pytest_cache/
+
+# MyPy
+.mypy_cache/
+
+# Black
+.black-cache/
+
+# Isort
+.isort-cache/

@@ -1,0 +1,17 @@
+# API Endpoints Configuration
+endpoints:
+  - name: "jsonplaceholder"
+    url: "https://jsonplaceholder.typicode.com"
+    auth_required: false
+    rate_limit: 100  # requests per hour
+
+  - name: "httpbin"
+    url: "https://httpbin.org"
+    auth_required: false
+    rate_limit: 50
+
+scheduling:
+  default_interval: 300  # seconds
+  retry_policy:
+    max_attempts: 3
+    backoff_factor: 2

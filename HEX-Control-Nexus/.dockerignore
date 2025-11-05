@@ -1,0 +1,40 @@
+# HEX Control Nexus - Docker Ignore File
+
+# Ignore git directory
+.git/
+
+# Ignore node_modules
+node_modules/
+
+# Ignore logs directory
+logs/
+
+# Ignore database files
+database/*.db
+
+# Ignore environment files
+.env
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Ignore test files
+tests/
+
+# Ignore documentation files
+docs/
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore OS files
+.DS_Store
+Thumbs.db

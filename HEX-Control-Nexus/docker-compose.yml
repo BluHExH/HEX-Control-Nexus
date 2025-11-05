@@ -1,0 +1,93 @@
+version: '3.8'
+
+services:
+  # Python Core Service
+  python-core:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: python-core
+    container_name: hex-python-core
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./database:/app/database
+      - ./logs:/app/logs
+      - ./config:/app/config
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+
+  # Node.js Webhooks Service
+  node-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: node-webhooks
+    container_name: hex-node-service
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./logs:/app/logs
+      - ./backend/node_webhooks:/app/backend/node_webhooks
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+
+  # Web Dashboard
+  web-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: web-dashboard
+    container_name: hex-web-dashboard
+    ports:
+      - "8000:80"
+    volumes:
+      - ./web_dashboard:/usr/share/nginx/html
+    restart: unless-stopped
+
+  # Java Service
+  java-service:
+    build:
+      context: ./backend/java_service
+      dockerfile: Dockerfile
+    container_name: hex-java-service
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend/java_service:/app
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    restart: unless-stopped
+
+  # Database Service (SQLite for simplicity)
+  db:
+    image: postgres:13-alpine
+    container_name: hex-database
+    environment:
+      POSTGRES_DB: hex_nexus
+      POSTGRES_USER: hex_user
+      POSTGRES_PASSWORD: hex_password
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  # Selenium Chrome (Optional for browser automation)
+  selenium-chrome:
+    image: selenium/standalone-chrome:4.1.2-20220131
+    container_name: hex-selenium-chrome
+    ports:
+      - "4444:4444"
+      - "7900:7900"
+    environment:
+      - SE_NODE_OVERRIDE_MAX_SESSIONS=true
+      - SE_NODE_MAX_SESSIONS=2
+    shm_size: 2gb
+    restart: unless-stopped
+
+volumes:
+  db_data:

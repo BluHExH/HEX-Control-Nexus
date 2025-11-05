@@ -1,0 +1,23 @@
+{
+  "name": "hex-node-webhooks",
+  "version": "1.0.0",
+  "description": "Node.js Webhooks Service for HEX Control Nexus",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "node ../tests/test_node_webhooks.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "puppeteer": "^19.4.0",
+    "ws": "^8.11.0",
+    "axios": "^1.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "keywords": ["automation", "webhooks", "puppeteer", "hex"],
+  "author": "HEX Control Nexus",
+  "license": "MIT"
+}

@@ -1,0 +1,16 @@
+# Task Scheduling Configuration
+schedules:
+  - name: "daily_quotes_scrape"
+    target: "quotes_static"
+    cron: "0 0 * * *"  # Daily at midnight
+    enabled: true
+
+  - name: "hourly_api_sync"
+    target: "jsonplaceholder"
+    cron: "0 * * * *"  # Hourly
+    enabled: false
+
+defaults:
+  timezone: "UTC"
+  max_runtime: 3600  # seconds
+  timeout: 300       # seconds

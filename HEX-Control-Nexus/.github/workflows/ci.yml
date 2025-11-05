@@ -1,0 +1,121 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # Python Tests
+  python-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+    - name: Run Python tests
+      run: |
+        python -m pytest tests/test_web_scraper.py -v
+        python -m pytest tests/test_api_automation.py -v
+        
+    - name: Run Python linters
+      run: |
+        pip install flake8 black isort mypy
+        flake8 backend/python_core
+        black --check backend/python_core
+        isort --check-only backend/python_core
+        mypy backend/python_core
+
+  # Node.js Tests
+  node-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+        
+    - name: Install Node.js dependencies
+      run: |
+        cd backend/node_webhooks
+        npm ci
+        
+    - name: Run Node.js tests
+      run: |
+        cd backend/node_webhooks
+        npm test
+        
+    - name: Run ESLint
+      run: |
+        cd backend/node_webhooks
+        npx eslint . --ext .js
+
+  # Java Tests
+  java-tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        
+    - name: Build and test Java service
+      run: |
+        cd backend/java_service
+        ./mvnw test
+
+  # Docker Build Test
+  docker-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+      
+    - name: Build Python Core Docker image
+      run: |
+        docker build --target python-core -t hex-python-core .
+        
+    - name: Build Node.js Webhooks Docker image
+      run: |
+        docker build --target node-webhooks -t hex-node-webhooks .
+        
+    - name: Build Web Dashboard Docker image
+      run: |
+        docker build --target web-dashboard -t hex-web-dashboard .
+
+  # Security Scan
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Run security scan
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        ignore-unfixed: true
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        
+    - name: Upload scan results
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'

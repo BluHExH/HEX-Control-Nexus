@@ -1,0 +1,20 @@
+{
+  "targets": [
+    {
+      "name": "quotes_static",
+      "mode": "static",
+      "base_url": "http://quotes.toscrape.com",
+      "start_paths": ["/"],
+      "selectors": {
+        "item": ".quote",
+        "fields": {"text": ".text", "author": ".author", "tags": ".tags .tag"}
+      },
+      "pagination": {"next_selector": ".next a", "next_url_template": null},
+      "storage": {"type": "sqlite", "path": "database/hex_data.db", "unique_key": "text"}
+    }
+  ],
+  "concurrency": {"global": 5, "per_domain": 2},
+  "rate_limit": {"delay_seconds": 1.5, "jitter": true},
+  "user_agents": ["Mozilla/5.0 (compatible; HEX/1.0)"],
+  "telegram": {"enabled": false, "bot_token": "", "chat_id": ""}
+}
