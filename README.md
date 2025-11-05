@@ -34,9 +34,6 @@ bash scripts/run.sh
 
 echo -e "\e[92mH\e[91mE\e[92mX\e[0m Control Nexus"
 
-> দেখতেই বোঝা যাবে এটি তোমার HEX System চলছে ⚡
-
-
 
 
 
